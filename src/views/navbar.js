@@ -13,9 +13,9 @@ export default	function navbar(viewModel) {
 	let navModel = viewModel.navbar;
   let { text:brandtext, img: brandimg, href:brandhref} = navModel.brand
   let collapseClassName = classnames({
-    // collapse:true,
-    'navbar-collapse':true
-    // in:navModel.collapseIn
+    collapse:true,
+    'navbar-collapse':true,
+    in:navModel.collapseIn
   })
 	return (
       <nav className={ 'navbar navbar-default navbar-static-top' } >
@@ -29,7 +29,7 @@ export default	function navbar(viewModel) {
               </button>
               <a className={ 'navbar-brand' } href = { brandhref }> { brandtext } </a>
             </div>
-            <Collapse in={navModel.collapseIn}>
+
              <div className = { collapseClassName } >
               { renderNavbarPortion(navModel.main,viewModel) }
               { renderNavbarPortion(navModel.left,viewModel,'left') }
@@ -43,7 +43,7 @@ export default	function navbar(viewModel) {
 
             </div>
             
-           </Collapse>
+
       </nav>
     )
 
