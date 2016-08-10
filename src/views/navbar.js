@@ -4,18 +4,30 @@ import Row from '../components/bootstrap/Row'
 import Column from '../components/bootstrap/Column'
 import Dropdown from '../components/bootstrap/Dropdown'
 import FluidContainer from '../components/bootstrap/FluidContainer'
+import Collapse from 'react-collapse'
 import  { toggleMenu,clickOption } from '../actions/dropdownAction'
 import  { toggleNavCollapse, toggleSideBarAcive } from '../actions/navbarAction'
 
 export default	function navbar(viewModel) {
 	
 	let navModel = viewModel.navbar;
+  let isMobile = viewModel.viewMode === 'mobile'
   let { text:brandtext, img: brandimg, href:brandhref} = navModel.brand
   let collapseClassName = classnames({
-    collapse:true,
-    'navbar-collapse':true,
-    in:navModel.collapseIn
+    'navbar-collapse':true
   })
+  let mainNav= ( <div className = { collapseClassName } >
+              { renderNavbarPortion(navModel.main,viewModel) }
+              { renderNavbarPortion(navModel.left,viewModel,'left') }
+              { renderNavbarPortion(navModel.right,viewModel,'right') } 
+              {
+                (Array.isArray(navModel.form.group) && navModel.form.group.length >0) && 
+                renderForm(navModel.form)
+              }  
+
+              { renderSideBar(viewModel) }
+
+            </div>)
 	return (
       <nav className={ 'navbar navbar-default navbar-static-top' } >
 
@@ -28,19 +40,23 @@ export default	function navbar(viewModel) {
               </button>
               <a className={ 'navbar-brand' } href = { brandhref }> { brandtext } </a>
             </div>
+            {
+              (()=>{
+                if(isMobile){
+                  return (
+                     <Collapse isOpened={navModel.collapseIn}>
+                      {mainNav}
+                     </Collapse>
+                    )
+                }
+                else{
+                  return mainNav
+                }
 
-             <div className = { collapseClassName } >
-              { renderNavbarPortion(navModel.main,viewModel) }
-              { renderNavbarPortion(navModel.left,viewModel,'left') }
-              { renderNavbarPortion(navModel.right,viewModel,'right') } 
-              {
-                (Array.isArray(navModel.form.group) && navModel.form.group.length >0) && 
-                renderForm(navModel.form)
-              }  
+              })()
 
-              { renderSideBar(viewModel) }
-
-            </div>
+            }
+            
             
 
       </nav>
@@ -66,12 +82,14 @@ function renderNavbarPortion(portion,viewModel,align) {
                   if(item.dropdown){
                     let dropdown = viewModel.Dropdown[item.dropdown]
                     return (
+                      <li key={ dropdown.id }>
                       <Dropdown { ...dropdown } mode='nav' toggleMenu={toggleMenu} clickOption={clickOption} />
+                      </li>
                       )
                   }
                   else{
                     let { text , ...itemprops} = item
-                    return (<li>
+                    return (<li key={ text }>
                         <a {...itemprops} > { text } </a>
                     </li>)
                   }
@@ -114,7 +132,7 @@ function renderForm(formModel) {
   )
 }
 
-function renderSideBarRecur(model, level=1, itemPath) {
+function renderSideBarRecur(model, level=1, itemPath, isMobile=false) {
   let iconElement = null
   if (model.icon) { 
     let iconClass = `fa ${ model.icon} fa-fw`
@@ -130,25 +148,35 @@ function renderSideBarRecur(model, level=1, itemPath) {
     let menuClass = classnames({
       nav:true,
       'nav-second-level':level ===1,
-      'nav-third-level':level ===2,
-       'collapse':true,
-       'in':model.isOpen
+      'nav-third-level':level ===2
     })
     return (
         <li key={ model.path }>
             <a href = { model.href } onClick = { () => toggleSideBarAcive(model.path) } className={linkActiveClass} >{ iconElement } { model.text } { hasItem && <span className="fa arrow"></span> } </a>
-              <ul className={ menuClass }>
+             
                   {
                     (() => {
                         if(hasItem) {
-                          return model.items.map((menuOrItem,index) => renderSideBarRecur(menuOrItem, level+1, model.path + '.items.' + index))
-                        }
+                          let items= (<ul className={ menuClass }>
+                                        {model.items.map((menuOrItem,index) => renderSideBarRecur(menuOrItem, level+1, model.path + '.items.' + index, isMobile))}
+                                     </ul>)
+                            if(level === 1 && (!isMobile)){
+
+                            return (<Collapse isOpened={ model.isOpen } keepCollapsedContent={true}>
+                                       {items}
+                                  </Collapse>
+                              )
+                            }
+                            else{
+                              return model.isOpen ? items:null
+                            }
+                          }
                         else{
                           return null
                         }
                     })()
                   }
-              </ul>
+         
         </li>
     )
   }
@@ -166,8 +194,8 @@ function renderSideBar(viewModel) {
   
   let sidebarModel = model.sidebar
   let firstLevels = model.sidebar.FirstLevels
-
-  let sidebarView = firstLevels.map((key) => { return renderSideBarRecur( sidebarModel[key] ) } )
+  let isMobile = viewModel.viewMode === 'mobile'
+  let sidebarView = firstLevels.map((key) => { return renderSideBarRecur( sidebarModel[key],1,null, isMobile) } )
 
 
   return (
@@ -175,7 +203,7 @@ function renderSideBar(viewModel) {
               <div className="navbar-default sidebar" role="navigation">
                     <div className="sidebar-nav">
                         <ul className="nav" id="side-menu">
-                            <li className="sidebar-search">
+                            <li key='sidebar-search' className="sidebar-search">
                                 <div className="input-group custom-search-form">
                                     <input type="text" className="form-control" placeholder="Search..."/>
                                     <span className="input-group-btn">
