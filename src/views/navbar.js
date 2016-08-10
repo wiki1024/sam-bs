@@ -4,7 +4,6 @@ import Row from '../components/bootstrap/Row'
 import Column from '../components/bootstrap/Column'
 import Dropdown from '../components/bootstrap/Dropdown'
 import FluidContainer from '../components/bootstrap/FluidContainer'
-import Collapse from '../components/bootstrap/Collapse'
 import  { toggleMenu,clickOption } from '../actions/dropdownAction'
 import  { toggleNavCollapse, toggleSideBarAcive } from '../actions/navbarAction'
 
