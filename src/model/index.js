@@ -1,6 +1,7 @@
 import state from '../state'
 import objectPath from 'object-path'
 import { navbarSetup, getFirstLevel, closeMenu, deActiveItems } from './navbar'
+import moment from 'moment'
 
 let model = { }
 window.model = model
@@ -24,6 +25,7 @@ model.viewMode= window.innerWidth < 768 ? 'mobile' : 'normal'
 model.Selection={ } 
 model.Dropdown = { }
 model.sampleModel= { }
+model.DatePicker = { }
 
 navbarSetup(model)
 // proposal { ...metainfo, payload}
@@ -106,6 +108,9 @@ function init() {
 	model.Selection.dpPL7= { id:'dpPL7', isOpen: false, val:null, path:'sampleModel.pl7' }
 	model.Selection.dpPL8= { id:'dpPL8', isOpen: false, val:null, path:'sampleModel.pl8' }
 	model.Selection.dpPL9= { id:'dpPL9', isOpen: false, val:null, path:'sampleModel.pl9' }
+
+    let today= moment()
+    model.DatePicker.datePicker1 = { id:'datePicker1', date:today , month:today.month(),year:today.year()}
 
 
 	let dropdown1=	{
