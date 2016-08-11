@@ -24,6 +24,33 @@
 		border: 1px solid @dropdown-border;
 		border-radius: @border-radius-base;
 
+		// &-enter {
+		//     opacity: 0;
+		//   }
+
+		// &-enter&-enter-active {
+		// opacity: 1;
+		// transition: opacity 5000ms ease-in;
+		// }
+
+		// &-leave{
+		// 	opacity: 1;
+		// }
+		// &-leave&-leave-active {
+		// opacity: 0.01;
+		// transition: opacity 300ms ease-in;
+		// // transform: translateY(1rem);
+		// }
+
+		// &-appear {
+		//   opacity: 0.01;
+		// }
+
+		// &-appear&-appear-active {
+		//   opacity: 1;
+		//   transition: opacity .5s ease-in;
+		// }
+
 		.header{
 			font-size: 1.2em;
 			margin: 5px 0 0; 
@@ -68,4 +95,27 @@
 			}
 		}
 	}
+}
+
+
+.calendar-enter {
+  opacity: 0;
+}
+.calendar-enter.calendar-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.calendar-leave {
+  opacity: 1;
+}
+.calendar-leave.calendar-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+.calendar-appear {
+  opacity: 0.01;
+}
+.calendar-appear.calendar-appear-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
 }

@@ -82,9 +82,9 @@ function renderNavbarPortion(portion,viewModel,align) {
                   if(item.dropdown){
                     let dropdown = viewModel.Dropdown[item.dropdown]
                     return (
-                      <li key={ dropdown.id }>
-                      <Dropdown { ...dropdown } mode='nav' toggleMenu={toggleMenu} clickOption={clickOption} />
-                      </li>
+
+                      <Dropdown key={ dropdown.id } { ...dropdown } mode='nav' toggleMenu={toggleMenu} clickOption={clickOption} />
+
                       )
                   }
                   else{

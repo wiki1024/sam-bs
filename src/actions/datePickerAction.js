@@ -9,3 +9,8 @@ export function selectDate(data) {
 	present({ datePickerSelectDate:true, ...data })
 	return false		
 }
+
+export function toggleOpen(data) {
+	present({ datePickerToggleOpen:true, ...data })
+	return false		
+}

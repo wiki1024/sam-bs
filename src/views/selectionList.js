@@ -22,7 +22,7 @@ export default	function selectionList(viewModel) {
 
 	return (
       <div>
-       <DatePicker { ...datePicker1 } updateMonth={updateMonth} selectDate={selectDate}/>
+       <DatePicker { ...datePicker1 } />
 	   
 	  </div>
     )
