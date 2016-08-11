@@ -87,7 +87,9 @@
 			    &.past, &.future {
 				    opacity: 0.5;
 				}
-
+				&.selected{
+					background-color: @gray-lighter;
+				}
 				&:hover {
 				    cursor: pointer;
 				    background-color: @gray-lighter;
@@ -98,24 +100,42 @@
 }
 
 
-.calendar-enter {
-  opacity: 0;
+.collapsable-enter {
+   // max-height: 0;
+   // overflow: hidden;
+   transform: scaleY(0);
+   transform-origin: top;
+
 }
-.calendar-enter.calendar-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+.collapsable-enter.collapsable-enter-active {
+  // .transition-property(~"max-height");
+  // .transition-duration(.5s);
+  // .transition-timing-function(ease-in);
+  //   max-height: 300px;
+  	transition: all 0.5s linear;
+
+  	transform: scaleY(1);
 }
-.calendar-leave {
-  opacity: 1;
+.collapsable-leave {
+	 max-height: 300px;
 }
-.calendar-leave.calendar-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+.collapsable-leave.collapsable-leave-active {
+	.transition-property(~"height");
+	  .transition-duration(5s);
+	  .transition-timing-function(linear);
+	   position: relative;
+		height: 0;
+		overflow: hidden;
+
+	  // max-height:0;
+   // 	  overflow: hidden;
+
+	
 }
-.calendar-appear {
-  opacity: 0.01;
-}
-.calendar-appear.calendar-appear-active {
-  opacity: 1;
-  transition: opacity 0.5s ease-in;
-}
+// .calendar-appear {
+//   opacity: 0.01;
+// }
+// .calendar-appear.calendar-appear-active {
+//   opacity: 1;
+//   transition: opacity 0.5s ease-in;
+// }
