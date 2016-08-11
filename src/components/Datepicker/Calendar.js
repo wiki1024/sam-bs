@@ -1,4 +1,4 @@
-import React from 'react/addons'
+import React from 'react'
 import moment from 'moment'
 import Header from './header'
 import Month from './month'
@@ -6,7 +6,7 @@ import Month from './month'
 const Calendar = (props)=>{
 
     return (
-      <div className="sd-calendar">
+      <div className="calendar">
         <Header {...props} />
         <Month {...props} key={props.month}/>
       </div>

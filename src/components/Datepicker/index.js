@@ -6,7 +6,7 @@ import Calendar from './Calendar'
 const DatePicker = (props) =>{
 	let {id, date, month, year, updateMonth, selectDate} = props
 	let dates = generateDates(month,year)
-	let calendar =( <Calendar month={month}
+	let calendar =( <Calendar month={month} id={id}
 				        year={year}
 				        dates={dates}
 				        updateMonth={updateMonth}
@@ -14,10 +14,13 @@ const DatePicker = (props) =>{
 				        key="calendar" />)
 
 	return (
-			<div className="sd-datepicker">
-	        	<input className="sd-input"
+			<div className="datePicker">
+				<div className="control-group">
+	        	<input className="form-control"
 		          type="text"
-		          readOnly/>
+		          value={ date.format('MM/DD/YYYY') } />
+		          <div className="input-group-addon"><i className="fa fa-calendar" aria-hidden="true"></i></div>
+		          </div>
 	          {calendar}
 	      	</div>
 		)

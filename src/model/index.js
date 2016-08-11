@@ -2,9 +2,12 @@ import state from '../state'
 import objectPath from 'object-path'
 import { navbarSetup, getFirstLevel, closeMenu, deActiveItems } from './navbar'
 import moment from 'moment'
-
 let model = { }
+
+model.moment=moment
 window.model = model
+
+
 model.plList= [
 	{ text:'javascript', value:'js' },
 	{ text:'java', value:'j8' },
@@ -82,7 +85,34 @@ model.present = function(proposal) {
     		newTab.isActive=true
     		model.sidebar.CurrentTabPath=path
     	}
+        
+    }
 
+    if(proposal.datePickerSelectDate){
+        let { id, val } = proposal
+        model.DatePicker[id].date = val
+
+    }
+
+    if(proposal.datePickerUpdateMonth){
+        let { id, val } = proposal
+        let { year, month } = model.DatePicker[id]
+        if(val===-1){
+            month-- 
+            if (month <0){
+                month = month + 12
+                year--
+            }
+        }
+        else{
+            month++
+            if(month >= 12){
+                month %= 12
+                year++
+            }
+        }
+        model.DatePicker[id].month = month
+        model.DatePicker[id].year = year
 
     }
     // -> Reactive Loop

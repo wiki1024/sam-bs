@@ -1,0 +1,71 @@
+.datePicker {
+	text-align: center;
+	position: relative;
+
+	.control-group{
+		&:extend(.clearfix all);
+		display: table;
+		.form-control{
+			float: left;
+			margin-right: -34px;
+			border-top-right-radius:0;
+			border-bottom-right-radius:0;
+		}
+	
+	}
+	.calendar{
+		max-width: 350px;
+		min-width: 280px;
+		position: absolute;
+		top: 100%;
+		left: 0;
+
+		z-index: @zindex-dropdown;
+		background-color: @dropdown-bg;
+		border: 1px solid @dropdown-fallback-border; // IE8 fallback
+		border: 1px solid @dropdown-border;
+		border-radius: @border-radius-base;
+
+		.header{
+			font-size: 1.2em;
+			margin: 5px 0 0; 
+			a{
+				display: inline-block;
+				width:12%;
+			}
+			span.sd-heading{
+				display: inline-block;
+				width:76%;
+			}
+		}
+		.month{
+
+			ul.days{
+				list-style: none;
+				&:extend(.clearfix all);
+				padding-left: 0;
+				li{
+				width: percentage(1/7);
+  				float: left;
+
+				}
+			}
+			.date{
+				width: percentage(1/7);
+  				float: left;
+  				padding: 0.5rem;
+			    font-weight: 400;
+			    border-radius: 0.25rem;
+
+			    &.past, &.future {
+				    opacity: 0.5;
+				}
+
+				&:hover {
+				    cursor: pointer;
+				    background-color: @gray-lighter;
+			    }
+			}
+		}
+	}
+}
