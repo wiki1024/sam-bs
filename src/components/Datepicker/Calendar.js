@@ -8,7 +8,7 @@ import Month from './month'
 const Calendar = (props)=>{
 
     return (
-      <div className='calendar'>
+      <div className='calendar' ref={ (c) => window.ccc=c }>
         <Header {...props} />
         <Month {...props} key={props.month}/>
       </div>

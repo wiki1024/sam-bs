@@ -9,9 +9,10 @@ import { debounce } from '../../util'
 const DatePicker = (props) =>{
 	let {id, date, month, year, isOpened} = props
 	let dates = generateDates(month,year)
-	let calendar = isOpened ? ( <Calendar month={month} id={id}
+	let calendar = isOpened ? ( <Calendar month={month} id={id} 
 				        year={year}
 				        dates={dates}
+				        selected= {date}
 				        updateMonth={debounce(updateMonth,100)}
 				        selectDate={selectDate}
 				        key="calendar" />) : null
@@ -26,8 +27,8 @@ const DatePicker = (props) =>{
 		          </div>
 	       
 		         
-		      		<ReactCSSTransitionGroup transitionName="calendar" 
-		      			transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+		      		<ReactCSSTransitionGroup transitionName="collapsable" 
+		      			transitionEnterTimeout={500} transitionLeaveTimeout={5000}>
 			           {calendar}
 			        </ReactCSSTransitionGroup>
 	      	</div>
