@@ -4,6 +4,7 @@ import _ from 'lodash'
 import Calendar from './Calendar'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { updateMonth, selectDate, toggleOpen } from '../../actions/datePickerAction'
+import { debounce } from '../../util'
 
 const DatePicker = (props) =>{
 	let {id, date, month, year, isOpened} = props
@@ -11,7 +12,7 @@ const DatePicker = (props) =>{
 	let calendar = isOpened ? ( <Calendar month={month} id={id}
 				        year={year}
 				        dates={dates}
-				        updateMonth={updateMonth}
+				        updateMonth={debounce(updateMonth,100)}
 				        selectDate={selectDate}
 				        key="calendar" />) : null
 

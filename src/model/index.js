@@ -115,6 +115,12 @@ model.present = function(proposal) {
         model.DatePicker[id].year = year
 
     }
+
+    if(proposal.datePickerToggleOpen){
+        let { id, val } = proposal
+        model.DatePicker[id].isOpened = !model.DatePicker[id].isOpened
+    }
+
     // -> Reactive Loop
     state(model) 
     
@@ -140,7 +146,7 @@ function init() {
 	model.Selection.dpPL9= { id:'dpPL9', isOpen: false, val:null, path:'sampleModel.pl9' }
 
     let today= moment()
-    model.DatePicker.datePicker1 = { id:'datePicker1', date:today , month:today.month(),year:today.year()}
+    model.DatePicker.datePicker1 = { id:'datePicker1', date:today , month:today.month(),year:today.year(), isOpened:false}
 
 
 	let dropdown1=	{
