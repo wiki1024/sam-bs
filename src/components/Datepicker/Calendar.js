@@ -4,13 +4,12 @@ import Header from './header'
 import Month from './month'
 
 
-
 const Calendar = (props)=>{
 
     return (
-      <div className='calendar' ref={ (c) => window.ccc=c }>
-        <Header {...props} />
-        <Month {...props} key={props.month}/>
+      <div className='calendar'>
+     		<Header {...props} />
+        	<Month {...props} key={props.month}/>
       </div>
     )
 

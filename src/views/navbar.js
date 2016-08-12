@@ -4,7 +4,7 @@ import Row from '../components/bootstrap/Row'
 import Column from '../components/bootstrap/Column'
 import Dropdown from '../components/bootstrap/Dropdown'
 import FluidContainer from '../components/bootstrap/FluidContainer'
-import Collapse from 'react-collapse'
+import { Collapse } from 'react-bootstrap'
 import  { toggleMenu,clickOption } from '../actions/dropdownAction'
 import  { toggleNavCollapse, toggleSideBarAcive } from '../actions/navbarAction'
 
@@ -44,7 +44,7 @@ export default	function navbar(viewModel) {
               (()=>{
                 if(isMobile){
                   return (
-                     <Collapse isOpened={navModel.collapseIn}>
+                     <Collapse in={navModel.collapseIn}>
                       {mainNav}
                      </Collapse>
                     )
@@ -151,25 +151,27 @@ function renderSideBarRecur(model, level=1, itemPath, isMobile=false) {
       'nav-third-level':level ===2
     })
     return (
-        <li key={ model.path }>
-            <a href = { model.href } onClick = { () => toggleSideBarAcive(model.path) } className={linkActiveClass} >{ iconElement } { model.text } { hasItem && <span className="fa arrow"></span> } </a>
+        <li key={ model.path } className={linkActiveClass} >
+            <a href = { model.href } onClick = { (e) =>{ e.preventDefault() ; toggleSideBarAcive(model.path) } } >{ iconElement } { model.text } { hasItem && <span className="fa arrow"></span> } </a>
              
                   {
                     (() => {
                         if(hasItem) {
-                          let items= (<ul className={ menuClass }>
-                                        {model.items.map((menuOrItem,index) => renderSideBarRecur(menuOrItem, level+1, model.path + '.items.' + index, isMobile))}
-                                     </ul>)
-                            if(level === 1 && (!isMobile)){
+                          let items= (
+                                      model.items.map((menuOrItem,index) => renderSideBarRecur(menuOrItem, level+1, model.path + '.items.' + index, isMobile))
+                                    )
+                            // if(level === 1 && (!isMobile)){
 
-                            return (<Collapse isOpened={ model.isOpen } keepCollapsedContent={true}>
+                            return (<Collapse in={ model.isOpen }>
+                                        <ul className={ menuClass }>
                                        {items}
+                                        </ul>
                                   </Collapse>
                               )
-                            }
-                            else{
-                              return model.isOpen ? items:null
-                            }
+                            // }
+                            // else{
+                            //   return model.isOpen ? items:null
+                            // }
                           }
                         else{
                           return null

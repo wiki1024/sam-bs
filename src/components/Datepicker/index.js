@@ -2,20 +2,16 @@ import React from 'react'
 import moment from 'moment'
 import _ from 'lodash'
 import Calendar from './Calendar'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { Collapse } from 'react-bootstrap'
 import { updateMonth, selectDate, toggleOpen } from '../../actions/datePickerAction'
 import { debounce } from '../../util'
+import Header from './header'
+import Month from './month'
 
 const DatePicker = (props) =>{
 	let {id, date, month, year, isOpened} = props
 	let dates = generateDates(month,year)
-	let calendar = isOpened ? ( <Calendar month={month} id={id} 
-				        year={year}
-				        dates={dates}
-				        selected= {date}
-				        updateMonth={debounce(updateMonth,100)}
-				        selectDate={selectDate}
-				        key="calendar" />) : null
 
 	return (
 			<div className="datePicker">
@@ -27,10 +23,19 @@ const DatePicker = (props) =>{
 		          </div>
 	       
 		         
-		      		<ReactCSSTransitionGroup transitionName="collapsable" 
-		      			transitionEnterTimeout={800} transitionLeaveTimeout={800}>
-			           {calendar}
-			        </ReactCSSTransitionGroup>
+		      		<Collapse in= { isOpened }>
+		      			<div className='calendar' >
+							<Header month={month} id={id} 
+									year={year}  
+									updateMonth={debounce(updateMonth,100)}/>
+							<Month  month={month} id={id} 
+									year={year}
+									dates={dates}
+									selected= {date}
+									selectDate={selectDate} key={month}/>
+			          	 </div>
+		      		</Collapse>
+			     
 	      	</div>
 		)
 }
