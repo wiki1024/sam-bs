@@ -100,31 +100,19 @@
 
 
 .collapsable-enter {
-   // max-height: 0;
-   // overflow: hidden;
-   transform: scaleY(0);
-   transform-origin: top;
-
+	transform: translate(-50%, 0);
+	opacity: 0;
+	overflow: hidden;
 }
-
 .collapsable-enter.collapsable-enter-active {
-  transform: translate(0, 0);
-  opacity: 1;
-  transition: opacity .8s ease-in-out, transform .8s ease-in-out;
+	transform: translate(0, 0);
+	opacity: 1;
+	transition:  transform .8s ease-in-out;
 }
 .collapsable-leave {
-  transform: translate(0, 0);
-  opacity: 1;
+	transform: translate(0, 0);
+	opacity: 1;
 }
 .collapsable-leave.collapsable-leave-active {
-  transform: translate(0, -100%);
-  opacity: 0;
-  transition: opacity .8s ease-in-out, transform .8s ease-in-out;
+	transform: translate(0, -100%);
 }
-// .calendar-appear {
-//   opacity: 0.01;
-// }
-// .calendar-appear.calendar-appear-active {
-//   opacity: 1;
-//   transition: opacity 0.5s ease-in;
-// }
