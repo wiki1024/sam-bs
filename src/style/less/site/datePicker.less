@@ -64,7 +64,6 @@
 			}
 		}
 		.month{
-
 			ul.days{
 				list-style: none;
 				&:extend(.clearfix all);
@@ -107,30 +106,20 @@
    transform-origin: top;
 
 }
-.collapsable-enter.collapsable-enter-active {
-  // .transition-property(~"max-height");
-  // .transition-duration(.5s);
-  // .transition-timing-function(ease-in);
-  //   max-height: 300px;
-  	transition: all 0.5s linear;
 
-  	transform: scaleY(1);
+.collapsable-enter.collapsable-enter-active {
+  transform: translate(0, 0);
+  opacity: 1;
+  transition: opacity .8s ease-in-out, transform .8s ease-in-out;
 }
 .collapsable-leave {
-	 max-height: 300px;
+  transform: translate(0, 0);
+  opacity: 1;
 }
 .collapsable-leave.collapsable-leave-active {
-	.transition-property(~"height");
-	  .transition-duration(5s);
-	  .transition-timing-function(linear);
-	   position: relative;
-		height: 0;
-		overflow: hidden;
-
-	  // max-height:0;
-   // 	  overflow: hidden;
-
-	
+  transform: translate(0, -100%);
+  opacity: 0;
+  transition: opacity .8s ease-in-out, transform .8s ease-in-out;
 }
 // .calendar-appear {
 //   opacity: 0.01;

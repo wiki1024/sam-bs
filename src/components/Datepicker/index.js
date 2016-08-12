@@ -28,7 +28,7 @@ const DatePicker = (props) =>{
 	       
 		         
 		      		<ReactCSSTransitionGroup transitionName="collapsable" 
-		      			transitionEnterTimeout={500} transitionLeaveTimeout={5000}>
+		      			transitionEnterTimeout={800} transitionLeaveTimeout={800}>
 			           {calendar}
 			        </ReactCSSTransitionGroup>
 	      	</div>
