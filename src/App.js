@@ -11,7 +11,7 @@ export default class App extends Component {
        <div id= 'page-wrapper' >
           <FluidContainer className={ 'hehe' }>
           	<Row>
-    	      	<Column md={ { col: 2, offset:3 } } >
+    	      	<Column md={ { col: 3, offset:3 } } >
     	      		{ this.props.selectionList }
     	      	</Column>
           	</Row>  	

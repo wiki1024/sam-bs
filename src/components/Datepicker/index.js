@@ -17,12 +17,12 @@ const DatePicker = (props) =>{
 		'focused':isOpened
 	})
 	return (
-			<div className="datePicker">
+			<div className='datePicker'>
 				<span className={ controlClass } onClick = { () => toggleOpen({id:id}) }>
-		        	<input className="form-control"
-			          type="text"
-			          value={ date.format('MM/DD/YYYY') } />
-			        <div className="input-group-addon"><i className="fa fa-calendar" aria-hidden="true"></i></div>
+		        	<input className='form-control'
+					       type='text'
+					       value={ date.format('MM/DD/YYYY') } />
+			        <div className='input-group-addon'><i className='fa fa-calendar' aria-hidden='true'></i></div>
 		        </span>
 	       
 		         

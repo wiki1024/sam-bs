@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import Selection from '../components/Selection' 
 import DatePicker from '../components/DatePicker/index'
+import Row from '../components/bootstrap/Row'
+import Column from '../components/bootstrap/Column'
+import FluidContainer from '../components/bootstrap/FluidContainer'
 import  bindDropdown from '../actions/bindSelection'
-import  { toggleMenu } from '../actions/selectionAction'
+import  { toggleMenu,updateFilterOption  } from '../actions/selectionAction'
 import { updateMonth, selectDate } from '../actions/datePickerAction'
 
 export default	function selectionList(viewModel) {
 	
-	// var options = viewModel.plList;
+	var options = viewModel.plList;
 
-	// let dpPL1= viewModel.Selection.dpPL1
+	 let dpPL1= viewModel.Selection.dpPL1
 	// let dpPL2= viewModel.Selection.dpPL2
 	// let dpPL3= viewModel.Selection.dpPL3
 	// let dpPL4= viewModel.Selection.dpPL4
@@ -21,9 +24,14 @@ export default	function selectionList(viewModel) {
 	let datePicker1 = viewModel.DatePicker.datePicker1
 
 	return (
-      <div>
-       <DatePicker { ...datePicker1 } />
-	  </div>
+			<FluidContainer>
+				<Row>
+					<DatePicker { ...datePicker1 } />
+				</Row>
+				<Row>
+					<Selection {...dpPL1} options={ options } toggleMenu={toggleMenu} clickOption={bindDropdown} updateFilterOption={updateFilterOption} />
+				</Row>
+			</FluidContainer>
     )
 
 }

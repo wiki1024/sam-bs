@@ -1,0 +1,54 @@
+.selection {
+	text-align: center;
+	position: relative;
+
+	.control-group{
+		&:extend(.clearfix all);
+		display: table;
+		border: 1px solid #ccc; 
+	 	border-radius: 4px; 
+	 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	 	&:hover {
+	 		 cursor: pointer;
+	 	}
+		.form-control, .input-group-addon{
+			border-radius: 0;
+			border: 0;
+			box-shadow: none;
+			background-color: transparent;
+		}
+
+		&.focused {
+		    border-color: #66afe9;
+		    outline: 0;
+		    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+		    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+		}
+	}
+	.menu {
+		min-width: 160px;
+		position: absolute;
+		width: 100%;
+		top: 100%;
+		left: 0;
+		padding: 0 12px;
+		text-align: left;
+		max-height: 200px;
+		overflow: auto;
+		z-index: @zindex-dropdown;
+		background-color: @dropdown-bg;
+		border: 1px solid @dropdown-fallback-border; // IE8 fallback
+		border: 1px solid @dropdown-border;
+		border-radius: @border-radius-base;
+
+		.option{
+			&.selected{
+				background-color: @gray-lighter;
+			}
+			&:hover {
+			    cursor: pointer;
+			    background-color: @gray-lighter;
+		    }
+		}
+	}
+}

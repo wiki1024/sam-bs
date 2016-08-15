@@ -7,17 +7,23 @@ export function toggleMenu(data) {
 }
 
 export function toggleMenuPure(data) {
-	var proposal={ componentType:'Selection', id:data.id, payload:{ isOpen:data.isOpen } }
+	var proposal={ selectiontoggleMenu:true, ...data }
 	return proposal
 }
 
 export function clickOptionPure(data) {
-	var proposal={ componentType:'Selection', id:data.id, payload:{ isOpen:data.isOpen, val:data.val} }
+	var proposal={ selectionClickOption:true, ...data }
 	return proposal
 }
 
 export function clickOption(data) {
-	var proposal={ componentType:'Selection', id:data.id, payload:{ isOpen:data.isOpen, val:data.val} }
+	var proposal=clickOptionPure(data)
+	present(proposal)
+	return false
+}
+
+export function updateFilterOption(data) {
+	var proposal={ selectionUpdateFilterOption:true, ...data }
 	present(proposal)
 	return false
 }

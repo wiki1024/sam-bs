@@ -35,18 +35,33 @@ navbarSetup(model)
 model.present = function(proposal) {
     // Logic that accepts or rejects the proposed values
     // ...
-    if (proposal.componentType==='Selection' && proposal.id) {
-    	let origin = model.Selection[proposal.id]
-    	model.Selection[proposal.id] = { ...origin, ...proposal.payload }
+    if(proposal.selectiontoggleMenu) {
+    	let id =proposal.id
+    	model.Selection[id].isOpened = !model.Selection[id].isOpened
+        if(model.Selection[id].isOpened === false){
+            model.Selection[id].filter=null
+        }
     }
 
-    if (proposal.componentType==='Dropdown' && proposal.id) {
+    if(proposal.selectionClickOption) {
+        let { id, val } = proposal
+        model.Selection[id].isOpened = false
+        model.Selection[id].val = val
+        model.Selection[id].filter=null
+    }
+
+    if(proposal.selectionUpdateFilterOption){
+        let {id, filter} = proposal
+         model.Selection[id].filter = filter
+    }
+
+    if(proposal.componentType==='Dropdown' && proposal.id) {
     	let origin = model.Dropdown[proposal.id]
     	model.Dropdown[proposal.id] = { ...origin, ...proposal.payload }
     }
 
     if(proposal.bindToPath){
-    	objectPath.set(model,proposal.bindToPath,proposal.payload.val)
+    	objectPath.set(model,proposal.bindToPath,proposal.val)
     }
 
     if(proposal.toggleNavCollapse){
@@ -135,15 +150,15 @@ model.persist = function() {
 
 function init() {
 
-	model.Selection.dpPL1= { id:'dpPL1', isOpen: false, val:null, path:'sampleModel.pl1' }
-	model.Selection.dpPL2= { id:'dpPL2', isOpen: false, val:null, path:'sampleModel.pl2' }
-	model.Selection.dpPL3= { id:'dpPL3', isOpen: false, val:null, path:'sampleModel.pl3' }
-	model.Selection.dpPL4= { id:'dpPL4', isOpen: false, val:null, path:'sampleModel.pl4' }
-	model.Selection.dpPL5= { id:'dpPL5', isOpen: false, val:null, path:'sampleModel.pl5' }
-	model.Selection.dpPL6= { id:'dpPL6', isOpen: false, val:null, path:'sampleModel.pl6' }
-	model.Selection.dpPL7= { id:'dpPL7', isOpen: false, val:null, path:'sampleModel.pl7' }
-	model.Selection.dpPL8= { id:'dpPL8', isOpen: false, val:null, path:'sampleModel.pl8' }
-	model.Selection.dpPL9= { id:'dpPL9', isOpen: false, val:null, path:'sampleModel.pl9' }
+	model.Selection.dpPL1= { id:'dpPL1', isOpened: false, val:null, path:'sampleModel.pl1' }
+	model.Selection.dpPL2= { id:'dpPL2', isOpened: false, val:null, path:'sampleModel.pl2' }
+	model.Selection.dpPL3= { id:'dpPL3', isOpened: false, val:null, path:'sampleModel.pl3' }
+	model.Selection.dpPL4= { id:'dpPL4', isOpened: false, val:null, path:'sampleModel.pl4' }
+	model.Selection.dpPL5= { id:'dpPL5', isOpened: false, val:null, path:'sampleModel.pl5' }
+	model.Selection.dpPL6= { id:'dpPL6', isOpened: false, val:null, path:'sampleModel.pl6' }
+	model.Selection.dpPL7= { id:'dpPL7', isOpened: false, val:null, path:'sampleModel.pl7' }
+	model.Selection.dpPL8= { id:'dpPL8', isOpened: false, val:null, path:'sampleModel.pl8' }
+	model.Selection.dpPL9= { id:'dpPL9', isOpened: false, val:null, path:'sampleModel.pl9' }
 
     let today= moment()
     model.DatePicker.datePicker1 = { id:'datePicker1', date:today , month:today.month(),year:today.year(), isOpened:false}
