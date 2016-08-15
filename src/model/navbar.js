@@ -8,7 +8,7 @@ export function navbarSetup(model) {
 						},
 						main:[
 							{ text:'Package', href:'#' ,onClick: ()=>{ console.log('hehe link click') } },
-							{ text:'Lanch', href:'#navhref' },
+							{ text:'Lanch', href:'#' },
 							{ text: 'Request', href:'#' },
 							{ dropdown:'dropdown1'}
 
@@ -38,15 +38,15 @@ export function navbarSetup(model) {
 	
 
 	model.sidebar = {
-						dashborad:{ path:'dashborad', text:'Dashborad', href:'index.html', isOpen:false, icon:'fa-dashboard',items:[], isActive:true, isMenu:true },
+						dashborad:{ path:'dashborad', text:'Dashborad', href:'#', isOpen:false, icon:'fa-dashboard',items:[], isActive:true, isMenu:true },
 						charts:{ path:'charts', 
 								 text:'Charts', href:'#', isOpen:false, icon:'fa-bar-chart-o', isActive:false, isMenu:true,
 								 items:[
 								 	{ text:'Flot Charts',href:'#', isActive:false },
 								 	{ text:'Morris.js Charts',href:'#', isActive:false }
 								 ] },
-						tables:{ path:'tables', text:'Tables', href:'Tables.html', isOpen:false, icon:'fa-table',items:[] ,isActive:false, isMenu:true},
-						forms:{ path:'forms', text:'Forms', href:'Forms.html', isOpen:false, icon:'fa-edit',items:[],isActive:false, isMenu:true },
+						tables:{ path:'tables', text:'Tables', href:'#', isOpen:false, icon:'fa-table',items:[] ,isActive:false, isMenu:true},
+						forms:{ path:'forms', text:'Forms', href:'#', isOpen:false, icon:'fa-edit',items:[],isActive:false, isMenu:true },
 						multiLevel:{ path:'multiLevel',
 									 text:'Multi-Level Dropdown', href:'#', isOpen:false, icon:'fa-sitemap',isActive:false,isMenu:true,
 									 items:[

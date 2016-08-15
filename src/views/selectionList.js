@@ -23,7 +23,6 @@ export default	function selectionList(viewModel) {
 	return (
       <div>
        <DatePicker { ...datePicker1 } />
-	   
 	  </div>
     )
 
