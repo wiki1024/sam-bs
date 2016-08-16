@@ -29,6 +29,8 @@ model.Selection={ }
 model.Dropdown = { }
 model.sampleModel= { }
 model.DatePicker = { }
+model.FileManager = { }
+model.router = 'fileManagerDemo'
 
 navbarSetup(model)
 // proposal { ...metainfo, payload}
@@ -177,6 +179,7 @@ function init() {
 
 	model.Dropdown.dropdown1= dropdown1
 
+    initFileManager()
 
 	 state(model) 
 }
@@ -184,7 +187,29 @@ function init() {
 let present = model.present
 
 
+function initFileManager() {
+    let fm1 = { id:'fm1' }
+    let root = { data:{ display:'root' } }
+    let r1_1 = { data:{ display:'r1_1' } }
+    let r1_2 = { data:{ display:'r1_2' } }
+    let r1_3 = { data:{ display:'r1_3' } }
+    root.children = [r1_1,r1_2,r1_3]
+    let r1_1_1 = { data:{ display:'r1_1_1' } }
+    let r1_1_2 = { data:{ display:'r1_1_2' } }
+    let r1_1_3 = { data:{ display:'r1_1_3' } }
+    let r1_2_1 = { data:{ display:'r1_2_1' } }
+    let r1_2_2 = { data:{ display:'r1_2_2' } }
+    let r1_2_3 = { data:{ display:'r1_2_3' } }
+    let r1_3_1 = { data:{ display:'r1_3_1' } }
+    let r1_3_2 = { data:{ display:'r1_3_2' } }
+    let r1_3_3 = { data:{ display:'r1_3_3' } }
+    r1_1.children=[r1_1_1,r1_1_2,r1_1_3]
+    r1_2.children=[r1_2_1,r1_2_2,r1_2_3]
+    r1_3.children=[r1_3_1,r1_3_2,r1_3_3]
+    fm1.root = root
+    model.FileManager.fm1 = fm1
 
+}
 
 export  { present, init }
 export default model 

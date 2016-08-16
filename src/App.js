@@ -5,14 +5,24 @@ import Column from './components/bootstrap/Column'
 
 export default class App extends Component {
   render() {
+    let {router,fileManagerDemo,selectionList} = this.props
     return (
       <div id='wrapper' >
        { this.props.navbar }
        <div id= 'page-wrapper' >
-          <FluidContainer className={ 'hehe' }>
+          <FluidContainer >
           	<Row>
-    	      	<Column md={ { col: 3, offset:3 } } >
-    	      		{ this.props.selectionList }
+    	      	<Column md={ { col: 5, offset:2 } } >
+    	      		{ 
+                  (() =>{
+                    if(router==='fileManagerDemo'){
+                      return fileManagerDemo
+                    }
+                    else{
+                      return selectionList
+                    }
+                  })()
+                }
     	      	</Column>
           	</Row>  	
           </FluidContainer>

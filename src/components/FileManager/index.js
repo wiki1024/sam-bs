@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 
 const FileManager = (props) => {
-	let { id, rootNode, files } = props
+	let { id, root, files } = props
 
 	return (
 			<div className='fileManager' >
@@ -23,7 +23,7 @@ const FileManager = (props) => {
 					<div className='divider'>
 					</div>
 					<div className='file-conainer' >
-					<table class="table table-bordered">
+					<table className="table table-bordered">
 					    <thead>
 					      <tr>
 					      	<th>#</th>
@@ -50,7 +50,7 @@ function renderFolderStructure(folderNode, level=0) {
 	return (
 		<ul>
 			<li>
-				<a href='#' ><i class="fa fa-folder-o" aria-hidden="true"></i>{ folderNode.dispaly }</a>
+				<a href='#' ><i className="fa fa-folder-o" aria-hidden="true"></i>{ folderNode.data.display }</a>
 				{
 					(
 						() => {
@@ -68,14 +68,14 @@ function renderFolderStructure(folderNode, level=0) {
 	)
 }
 
-//file { name,size,date }
+//file { uid, name,size,date }
 //
 function renderFiles(files) {
- 	if(Array.isArray(files) && ffiles.length >0){
+ 	if(Array.isArray(files) && files.length >0){
  		return files.map((file) =>{
  			return (
  				<tr>
- 					<td><i class="fa fa-file-pdf-o" aria-hidden="true"></i></td>
+ 					<td><i className="fa fa-file-pdf-o" aria-hidden="true"></i></td>
  					<td>{ file.name }</td>
  					<td>{ file.size }</td>
  					<td>{ file.date }</td>
@@ -84,3 +84,5 @@ function renderFiles(files) {
  		})
  	}
  } 
+
+ export default FileManager

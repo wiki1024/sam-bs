@@ -4,6 +4,7 @@ import App from '../App';
 import selectionList from './selectionList'
 // import menu from './menu'
 import navbar from './navbar'
+import fileManagerDemo from './fileManagerDemo'
 
 export default function view(viewModel) {
 
@@ -11,6 +12,7 @@ export default function view(viewModel) {
 		selectionList={ selectionList(viewModel) } 
 		navbar = { navbar(viewModel) }
 		fileManagerDemo = { fileManagerDemo(viewModel) }
+		router={ viewModel.router }
 		/>, document.getElementById('root'))
 
 }
