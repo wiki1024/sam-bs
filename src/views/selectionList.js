@@ -13,7 +13,7 @@ export default	function selectionList(viewModel) {
 	var options = viewModel.plList;
 
 	 let dpPL1= viewModel.Selection.dpPL1
-	// let dpPL2= viewModel.Selection.dpPL2
+	 let dpPL2= viewModel.Selection.dpPL2
 	// let dpPL3= viewModel.Selection.dpPL3
 	// let dpPL4= viewModel.Selection.dpPL4
 	// let dpPL5= viewModel.Selection.dpPL5
