@@ -10,7 +10,7 @@ export default function view(viewModel) {
 	ReactDOM.render(<App 
 		selectionList={ selectionList(viewModel) } 
 		navbar = { navbar(viewModel) }
-
+		fileManagerDemo = { fileManagerDemo(viewModel) }
 		/>, document.getElementById('root'))
 
 }
