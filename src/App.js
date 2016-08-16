@@ -12,7 +12,7 @@ export default class App extends Component {
        <div id= 'page-wrapper' >
           <FluidContainer >
           	<Row>
-    	      	<Column md={ { col: 5, offset:2 } } >
+    	      	<Column md={ { col: 5, offset:1 } } >
     	      		{ 
                   (() =>{
                     if(router==='fileManagerDemo'){

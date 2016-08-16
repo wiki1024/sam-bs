@@ -18,12 +18,14 @@ const FileManager = (props) => {
 				</div>
 				<div className='content-container'>
 					<div className='folder' >
-						{ renderFolderStructure(root) }
+						
+							{ renderFolderStructure(root) }
+						
 					</div>
 					<div className='divider'>
 					</div>
-					<div className='file-conainer' >
-					<table className="table table-bordered">
+					<div className='file-container' >
+					<table className="table">
 					    <thead>
 					      <tr>
 					      	<th>#</th>
