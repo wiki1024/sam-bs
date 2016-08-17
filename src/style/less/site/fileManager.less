@@ -22,10 +22,12 @@
 		table-layout: fixed;
 		width: 100%;
 		min-height: 400px;
+		overflow: hidden;
 		.folder-cell{
 			display: table-cell;
 			white-space: nowrap; /* This property is used to show ellipses, when the content within de cell is overflown. */
             overflow: auto;
+            min-width: 150px;
 			//width: 200px;
 			.folder{
 				overflow: hidden;
@@ -43,11 +45,14 @@
 		}
 		.divider{
 			display: table-cell;
-			width: 1px;
-			border-left: 1px solid #ccc; 
+			width: 7px;
+			border-right: 1px solid #ccc; 
+			cursor: ew-resize;
+			// background-color: red;
 		}
 		.file-container{
 			display: table-cell;
+			min-width: 150px;
 			width: 100%;
 			table{
 

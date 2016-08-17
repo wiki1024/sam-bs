@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
+import Rx from 'rx'
 import classnames from 'classnames'
 
 
@@ -9,10 +10,33 @@ class FileManager extends React.Component {
 		let fmNode = ReactDOM.findDOMNode(this)
 		let folderCellNode=fmNode.querySelector('.folder-cell')
 		let folderNode=fmNode.querySelector('.folder')
-		console.dir(folderNode)
+		let contentNode=fmNode.querySelector('.content-container')
+		let filesNode=fmNode.querySelector('.file-container')
+
 		folderNode.style['width']=`${folderNode['scrollWidth'] + 20}px`
 		folderCellNode.style['width']=`${fmNode['scrollWidth'] * 0.25}px`
-		console.dir(folderNode)
+
+		let dividerNode=fmNode.querySelector('.divider')
+		Rx.Observable.fromEvent(dividerNode,'mousedown')
+						.flatMap((down)=>{
+							let oldWidth=parseFloat(folderCellNode.style['width'].slice(0,folderCellNode.style['width'].length-2))
+							return Rx.Observable.fromEvent(document,'mousemove')
+												.map((move)=>{ 
+													move.preventDefault()
+													return { oldWidth:oldWidth, diff:(move.pageX - down.pageX) } 
+												})
+												.takeUntil(Rx.Observable.fromEvent(document,'mouseup'))
+						})
+						.subscribe((resize)=>{ 
+							console.log(resize)
+							let newWidth=resize.oldWidth + resize.diff;
+							if (newWidth>=150){
+								folderCellNode.style['width']=`${newWidth}px`
+							}
+							// filesNode.style['width']=`${contentNode['scrollWidth']-newWidth-7}px`
+
+
+						})
 	}
 
 	// componentDidUpdate() {
@@ -20,6 +44,12 @@ class FileManager extends React.Component {
 	// 	let folderCell=fmNode.querySelector('.folder-cell')
 	// 	let folder=fmNode.querySelector('.folder')
 	// }
+	// onMouseDown(startX){
+	// 	Rx.Observable.fromEvent(this,'mousemove')
+	// 							.map((move)=>{ return { diff:(move.pageX - down.pageX) } })
+	// 							takeUntil(Rx.Observable.fromEvent(this,'mouseup'))
+	// 							.subscribe((diff)=>console.log(diff))
+
 
 	render() {
 		let { id, root, files } = this.props
@@ -38,7 +68,7 @@ class FileManager extends React.Component {
 					</div>
 					<div className='content-container'>
 						<div className='folder-cell' >
-							<div className='folder' ref={(c) =>{console.log('hehe'); console.dir(c)} } >
+							<div className='folder' >
 								{ renderFolderStructure(root,0) }
 							</div>
 						</div>
