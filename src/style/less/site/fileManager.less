@@ -2,7 +2,7 @@
 	border: 1px solid #ccc; 
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 	border-radius: 4px; 
-	width: 750px;
+	width: 860px;
 
 	.control-container{
 		.clearfix();
@@ -19,20 +19,36 @@
 
 	.content-container{
 		display: table;
+		table-layout: fixed;
 		width: 100%;
 		min-height: 400px;
-		.folder{
-			display: block;
-			overflow: auto;
+		.folder-cell{
+			display: table-cell;
+			white-space: nowrap; /* This property is used to show ellipses, when the content within de cell is overflown. */
+            overflow: auto;
+			//width: 200px;
+			.folder{
+				overflow: hidden;
+
+				//width: 300px;
+			}
+			li{
+				a{
+					padding: 5px;
+					.fa{
+						margin-right: 5px;
+					}
+				}
+			}
 		}
 		.divider{
 			display: table-cell;
-			width: 0;
+			width: 1px;
 			border-left: 1px solid #ccc; 
 		}
 		.file-container{
 			display: table-cell;
-			width: 75%;
+			width: 100%;
 			table{
 
 			}

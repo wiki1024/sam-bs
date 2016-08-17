@@ -206,6 +206,8 @@ function initFileManager() {
     r1_1.children=[r1_1_1,r1_1_2,r1_1_3]
     r1_2.children=[r1_2_1,r1_2_2,r1_2_3]
     r1_3.children=[r1_3_1,r1_3_2,r1_3_3]
+    let r1_3_3_1 = { data:{ display:'InstallShield Installation Information' } }
+    r1_3_3.children=[r1_3_3_1]
     fm1.root = root
     model.FileManager.fm1 = fm1
 
