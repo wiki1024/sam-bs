@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Rx from 'rx/dist/rx'
+import Rx from 'rx'
 import classnames from 'classnames'
 
 
@@ -28,7 +28,6 @@ class FileManager extends React.Component {
 												.takeUntil(Rx.Observable.fromEvent(document,'mouseup'))
 						})
 						.subscribe((resize)=>{ 
-							console.log(resize)
 							let newWidth=resize.oldWidth + resize.diff;
 							let overallWidth=contentNode['scrollWidth']
 							if (newWidth>=150){
