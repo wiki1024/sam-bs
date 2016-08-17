@@ -30,6 +30,7 @@ class FileManager extends React.Component {
 						.subscribe((resize)=>{ 
 							console.log(resize)
 							let newWidth=resize.oldWidth + resize.diff;
+							let overallWidth=contentNode['scrollWidth']
 							if (newWidth>=150){
 								folderCellNode.style['width']=`${newWidth}px`
 							}
