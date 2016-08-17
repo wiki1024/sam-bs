@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Rx from 'rx'
+import Rx from 'rx/dist/rx'
 import classnames from 'classnames'
 
 
