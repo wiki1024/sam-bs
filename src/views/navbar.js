@@ -4,7 +4,8 @@ import Row from '../components/bootstrap/Row'
 import Column from '../components/bootstrap/Column'
 import Dropdown from '../components/bootstrap/Dropdown'
 import FluidContainer from '../components/bootstrap/FluidContainer'
-import { Collapse } from 'react-bootstrap'
+import Collapse  from '../components/bootstrap/Collapse'
+// import { Collapse } from 'react-bootstrap'
 import  { toggleMenu,clickOption } from '../actions/dropdownAction'
 import  { toggleNavCollapse, toggleSideBarAcive } from '../actions/navbarAction'
 
@@ -44,7 +45,7 @@ export default	function navbar(viewModel) {
               (()=>{
                 if(isMobile){
                   return (
-                     <Collapse in={navModel.collapseIn}>
+                     <Collapse isOpen={navModel.collapseIn}>
                       {mainNav}
                      </Collapse>
                     )
@@ -162,7 +163,7 @@ function renderSideBarRecur(model, level=1, itemPath, isMobile=false) {
                                     )
                             // if(level === 1 && (!isMobile)){
 
-                            return (<Collapse in={ model.isOpen }>
+                            return (<Collapse isOpen={ model.isOpen } level={level}>
                                         <ul className={ menuClass }>
                                        {items}
                                         </ul>

@@ -33,22 +33,10 @@ class FileManager extends React.Component {
 							if (newWidth>=150){
 								folderCellNode.style['width']=`${newWidth}px`
 							}
-							// filesNode.style['width']=`${contentNode['scrollWidth']-newWidth-7}px`
 
 
 						})
 	}
-
-	// componentDidUpdate() {
-	// 	let fmNode = ReactDOM.findDOMNode(this)
-	// 	let folderCell=fmNode.querySelector('.folder-cell')
-	// 	let folder=fmNode.querySelector('.folder')
-	// }
-	// onMouseDown(startX){
-	// 	Rx.Observable.fromEvent(this,'mousemove')
-	// 							.map((move)=>{ return { diff:(move.pageX - down.pageX) } })
-	// 							takeUntil(Rx.Observable.fromEvent(this,'mouseup'))
-	// 							.subscribe((diff)=>console.log(diff))
 
 
 	render() {
