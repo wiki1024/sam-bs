@@ -1,8 +1,10 @@
 import { present } from '../model'
+import { clearMenuPure } from './globalAction'
 
 export function toggleMenu(data) {
-	var proposal=toggleMenuPure(data)
-	present(proposal)
+	var toggle=toggleMenuPure(data)
+	var clear=clearMenuPure()
+	present({ ...toggle, ...clear })
 	return false
 }
 

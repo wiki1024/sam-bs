@@ -1,4 +1,5 @@
 import { present } from '../model'
+import { clearMenuPure } from './globalAction'
 
 export function updateMonth(data) {
 	present({ datePickerUpdateMonth:true, ...data  })
@@ -6,11 +7,13 @@ export function updateMonth(data) {
 }
 
 export function selectDate(data) {
-	present({ datePickerSelectDate:true, ...data })
+	var clear=clearMenuPure()
+	present({ datePickerSelectDate:true, ...data, ...clear })
 	return false		
 }
 
 export function toggleOpen(data) {
-	present({ datePickerToggleOpen:true, ...data })
+	var clear=clearMenuPure()
+	present({ datePickerToggleOpen:true, ...data,...clear })
 	return false		
 }

@@ -4,8 +4,8 @@ import Row from '../components/bootstrap/Row'
 import Column from '../components/bootstrap/Column'
 import Dropdown from '../components/bootstrap/Dropdown'
 import FluidContainer from '../components/bootstrap/FluidContainer'
-import Collapse  from '../components/bootstrap/Collapse'
-// import { Collapse } from 'react-bootstrap'
+//import Collapse  from '../components/bootstrap/Collapse'
+import { Collapse } from 'react-bootstrap'
 import  { toggleMenu,clickOption } from '../actions/dropdownAction'
 import  { toggleNavCollapse, toggleSideBarAcive } from '../actions/navbarAction'
 
@@ -45,7 +45,7 @@ export default	function navbar(viewModel) {
               (()=>{
                 if(isMobile){
                   return (
-                     <Collapse isOpen={navModel.collapseIn}>
+                     <Collapse in={navModel.collapseIn}>
                       {mainNav}
                      </Collapse>
                     )
@@ -163,7 +163,7 @@ function renderSideBarRecur(model, level=1, itemPath, isMobile=false) {
                                     )
                             // if(level === 1 && (!isMobile)){
 
-                            return (<Collapse isOpen={ model.isOpen } level={level}>
+                            return (<Collapse in={ model.isOpen } >
                                         <ul className={ menuClass }>
                                        {items}
                                         </ul>
@@ -225,34 +225,5 @@ function renderSideBar(viewModel) {
     )
 }
 
-
-//  <li>
-//     <a href="#"><i className="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span className="fa arrow"></span></a>
-//     <ul className="nav nav-second-level">
-//         <li>
-//             <a href="#">Second Level Item</a>
-//         </li>
-//         <li>
-//             <a href="#">Second Level Item</a>
-//         </li>
-//         <li>
-//             <a href="#">Third Level <span className="fa arrow"></span></a>
-//             <ul className="nav nav-third-level">
-//                 <li>
-//                     <a href="#">Third Level Item</a>
-//                 </li>
-//                 <li>
-//                     <a href="#">Third Level Item</a>
-//                 </li>
-//                 <li>
-//                     <a href="#">Third Level Item</a>
-//                 </li>
-//                 <li>
-//                     <a href="#">Third Level Item</a>
-//                 </li>
-//             </ul>
-//         </li>
-//     </ul>
-// </li>
 
  

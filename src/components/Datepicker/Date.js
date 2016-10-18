@@ -16,7 +16,7 @@ const Date = (props) => {
 	return (
       <div
         className={classes}
-        onClick={ ()=> selectDate({id:id,val:date}) }>
+        onClick={ (e)=> { selectDate({id:id,val:date});e.stopPropagation() } }>
         {date.date()}
       </div>
     )

@@ -10,15 +10,15 @@ import Month from './month'
 import classnames from 'classnames'
 
 const DatePicker = (props) =>{
-	let {id, date, month, year, isOpened} = props
+	let {id, date, month, year, isOpen} = props
 	let dates = generateDates(month,year)
 	let controlClass = classnames({
 		'control-group':true,
-		'focused':isOpened
+		'focused':isOpen
 	})
 	return (
-			<div className='datePicker'>
-				<span className={ controlClass } onClick = { () => toggleOpen({id:id}) }>
+			<div className='datePicker' onClick={ (e)=>{ e.stopPropagation() } }>
+				<span className={ controlClass } onClick = { (e) => { toggleOpen({id:id, isOpen:!isOpen});e.stopPropagation() } }>
 		        	<input className='form-control'
 					       type='text'
 					       value={ date.format('MM/DD/YYYY') } />
@@ -26,7 +26,7 @@ const DatePicker = (props) =>{
 		        </span>
 	       
 		         
-	      		<Collapse in= { isOpened }>
+	      		<Collapse in= { isOpen }>
 	      			<div className='calendar' >
 						<Header month={month} id={id} 
 								year={year}  

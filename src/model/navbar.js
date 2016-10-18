@@ -23,7 +23,6 @@ export function navbarSetup(model) {
 							{ text:'RightPackage', href:'#' ,onClick: ()=>{ console.log('hehe link click') } },
 							// { text:'RightLanch', href:'#navhref' },
 							// { text:'RightRequest', href:'#' },
-							{ dropdown:'dropdown1'}
 						],
 						form:{
 							align:'left',

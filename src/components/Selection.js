@@ -1,12 +1,12 @@
 import React from 'react'
 import classnames from 'classnames'
 // option { value:string|int, text:string }
-// props { options:option[], display:string, isOpened:bool, toggleMenu:function }
+// props { options:option[], display:string, isOpen:bool, toggleMenu:function }
 const Selection =(props) =>{
-	let { id, val, isOpened, options, filter ,path, toggleMenu, clickOption, updateFilterOption } = props
-	let origin = {  isOpened,id,path,val,filter }
+	let { id, val, isOpen, options, filter ,path, toggleMenu, clickOption, updateFilterOption } = props
+	let origin = {  isOpen,id,path,val,filter }
 	let display
-	if(!isOpened){	
+	if(!isOpen){	
 		display = 'Select ---'	
 		if(val) {
 		let selectedOption=options.find((ele)=>ele.value===val)
@@ -30,18 +30,21 @@ const Selection =(props) =>{
 
 	let controlClass = classnames({
 		'control-group':true,
-		'focused':isOpened
+		'focused':isOpen
 	})
 	let icon = classnames({
 		fa:true,
-		'fa-angle-up':isOpened,
-		'fa-angle-down':!isOpened,
+		'fa-angle-up':isOpen,
+		'fa-angle-down':!isOpen,
 	})
-	let menu = isOpened ? (<div className='menu'> { buildMenu(options,clickOption,origin) }  </div> ) :null
+	let menu = isOpen ? (<div className='menu'> { buildMenu(options,clickOption,origin) }  </div> ) :null
 	return (
 		<div className='selection'>
 
-			<span className={ controlClass } onClick={ () => toggleMenu({id:id})} >
+			<span className={ controlClass } onClick={ (e) => { 
+				if(!isOpen) { toggleMenu({id:id, isOpen:!isOpen}) }
+				e.stopPropagation()
+				 }} >
 		      	<input className='form-control'
 					       type='text'
 					       value= { display } onChange={ (e) => updateFilterOption({id:id,filter:e.target.value}) } />
@@ -71,7 +74,7 @@ function buildOption(option, clickOption, origin) {
 		option:true,
 		selected:option.value===origin.val
 	}) 
-	return <div className={ optionClass } key={option.value} onClick={()=> clickOption({id:origin.id, isOpened:false, val:option.value, path:origin.path})  } > { option.text }  </div>
+	return <div className={ optionClass } key={option.value} onClick={(e)=> {clickOption({id:origin.id, isOpen:false, val:option.value, path:origin.path}); e.stopPropagation() }  } > { option.text }  </div>
 }
 
 export default Selection

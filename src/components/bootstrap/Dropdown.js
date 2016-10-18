@@ -12,11 +12,11 @@ const Dropdown =(props) =>{
 		'btn-default':true
 	}
 
-	let toggleButton = mode === 'nav' ? (<a href='#' onClick={ () => toggleMenu({id:id, isOpen:!isOpen})} > 
+	let toggleButton = mode === 'nav' ? (<a href='#' onClick={ (e) => { toggleMenu({id:id, isOpen:!isOpen});  }} > 
 											{ display }
 			    							<span className={ 'caret' }></span>
 										</a>)
-									  : (<button className = { classnames(btnClasses) } onClick={ () => toggleMenu({id:id, isOpen:!isOpen})} >
+									  : (<button className = { classnames(btnClasses) } onClick={ (e) => {toggleMenu({id:id, isOpen:!isOpen});} } >
 										    { display }
 										    <span className={ 'caret' }></span>
 										</button>)
@@ -32,7 +32,7 @@ const Dropdown =(props) =>{
 				</ul> 
 			   ) 
 	return (
-		<Component className = { classnames(wrapperClasses) }>
+		<Component className = { classnames(wrapperClasses) } onClick={ (e)=> e.stopPropagation() } >
 			{toggleButton}
         	{menu}
 		</Component>

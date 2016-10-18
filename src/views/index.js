@@ -6,6 +6,11 @@ import selectionList from './selectionList'
 import navbar from './navbar'
 import fileManagerDemo from './fileManagerDemo'
 
+import SimpleDropdown from '../components/SimpleDropdown'
+
+
+
+
 export default function view(viewModel) {
 
 	ReactDOM.render(<App 
@@ -13,6 +18,8 @@ export default function view(viewModel) {
 		navbar = { navbar(viewModel) }
 		fileManagerDemo = { fileManagerDemo(viewModel) }
 		router={ viewModel.router }
+
 		/>, document.getElementById('root'))
 
 }
+

@@ -58,6 +58,7 @@
     "react-height": "^2.1.1",
     "react-motion": "^0.4.4",
     "react-overlays": "^0.6.6",
-    "rx": "^4.1.0"
+    "rx": "^4.1.0",
+    "uncontrollable": "^4.0.3"
   }
 }

@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import FluidContainer from './components/bootstrap/FluidContainer'
 import Row from './components/bootstrap/Row'
 import Column from './components/bootstrap/Column'
+import { clearMenu } from './actions/globalAction'
 
 export default class App extends Component {
   render() {
-    let {router,fileManagerDemo,selectionList} = this.props
+    let {router,fileManagerDemo,selectionList,simpleDropdown} = this.props
     return (
-      <div id='wrapper' >
+      <div id='wrapper' onClick={ (e) => clearMenu() } >
        { this.props.navbar }
        <div id= 'page-wrapper' >
           <FluidContainer >
@@ -24,7 +25,8 @@ export default class App extends Component {
                   })()
                 }
     	      	</Column>
-          	</Row>  	
+          	</Row>  
+
           </FluidContainer>
       </div>
     </div>
